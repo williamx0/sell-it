@@ -21,7 +21,6 @@ import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 
-
 @Entity
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -36,12 +35,10 @@ public class LocalUser {
     @NotBlank(message = "Username is required")
     private String username;
 
-
     @Column(name = "password", nullable = false, length = 100)
     @NotBlank(message = "Password is required")
     @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
-
 
     @Email 
     @Column(name = "email", nullable = false, unique = true, length = 300)
@@ -49,10 +46,8 @@ public class LocalUser {
     @Size(max = 300, message = "Email Adrress cannot be more than 300 characters")
     private String email;
 
-
     @Column(name = "first_name", nullable = false)
     private String firstName;
-
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
