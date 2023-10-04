@@ -4,6 +4,7 @@ package com.sellit.eCommerce.backend.service;
 import org.springframework.stereotype.Service;
 
 import com.sellit.eCommerce.backend.api.model.RegistrationBody;
+import com.sellit.eCommerce.backend.exception.UserAlreadyExistsException;
 import com.sellit.eCommerce.backend.model.LocalUser;
 import com.sellit.eCommerce.backend.model.dao.LocalUserDAO;
 
@@ -17,7 +18,11 @@ public class UserService {
     }
 
 
-    public LocalUser registerUser(RegistrationBody registrationBody) {
+    public LocalUser registerUser(RegistrationBody registrationBody) throws UserAlreadyExistsException {
+        if (localUserDAO.findByEmailIgnoreCase(registrationBody.getEmail()).isPresent()
+         || localUserDAO.findByUsernameIgnoreCase(registrationBody.getUsername()).isPresent()) {
+            throw new UserAlreadyExistsException();
+        }
         LocalUser user = new LocalUser();
         user.setEmail(registrationBody.getEmail());
         user.setFirstName(registrationBody.getFirstName());
