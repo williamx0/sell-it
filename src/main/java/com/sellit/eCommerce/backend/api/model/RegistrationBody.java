@@ -18,6 +18,7 @@ public class RegistrationBody {
         this.username = username;
     }
 
+    
     public String getEmail() {
         return this.email;
     }

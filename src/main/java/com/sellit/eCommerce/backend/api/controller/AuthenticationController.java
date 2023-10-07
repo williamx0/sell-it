@@ -13,12 +13,14 @@ import com.sellit.eCommerce.backend.api.model.RegistrationBody;
 import com.sellit.eCommerce.backend.exception.UserAlreadyExistsException;
 import com.sellit.eCommerce.backend.service.UserService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
  
-    private UserService userService; 
+    private UserService userService;  
  
     public AuthenticationController(UserService userService) {
         this.userService = userService;   // UserService generated constructor  
@@ -26,7 +28,7 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")  
-    public ResponseEntity registerUser(@RequestBody RegistrationBody registrationBody) {
+    public ResponseEntity registerUser(@Valid @RequestBody RegistrationBody registrationBody) {
         try {
           userService.registerUser(registrationBody);       // this line registers the user
           return ResponseEntity.ok().build();
