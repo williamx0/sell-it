@@ -1,11 +1,36 @@
 package com.sellit.eCommerce.backend.api.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class RegistrationBody {
 
+    @NotNull
+    @NotBlank
+    @Min(3)
+    @Max(255)
     private String username;
+
+    @NotNull
+    @NotBlank
+    @Email
     private String email;
+
+    @NotNull
+    @NotBlank
+    @Min(6)
+    @Max(32)
     private String password;
+
+    @NotNull
+    @NotBlank
     private String firstName;
+
+    @NotNull 
+    @NotBlank
     private String lastName;
     
     // Generate getters 
@@ -18,7 +43,6 @@ public class RegistrationBody {
         this.username = username;
     }
 
-    
     public String getEmail() {
         return this.email;
     }

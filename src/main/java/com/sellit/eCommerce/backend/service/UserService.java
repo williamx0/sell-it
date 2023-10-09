@@ -8,19 +8,23 @@ import com.sellit.eCommerce.backend.exception.UserAlreadyExistsException;
 import com.sellit.eCommerce.backend.model.LocalUser;
 import com.sellit.eCommerce.backend.model.dao.LocalUserDAO;
 
-import jakarta.validation.Valid;
+//import jakarta.validation.Valid;
+
 
 @Service
 public class UserService {
-    
-    private LocalUserDAO localUserDAO;
 
+    
+
+    private LocalUserDAO localUserDAO;
+ 
     public UserService(LocalUserDAO localUserDAO) {
         this.localUserDAO = localUserDAO;
     }
 
 
-    public LocalUser registerUser(@Valid RegistrationBody registrationBody) throws UserAlreadyExistsException {
+    public LocalUser registerUser(RegistrationBody registrationBody) throws UserAlreadyExistsException {
+        
         if (localUserDAO.findByEmailIgnoreCase(registrationBody.getEmail()).isPresent()
          || localUserDAO.findByUsernameIgnoreCase(registrationBody.getUsername()).isPresent()) {
             throw new UserAlreadyExistsException();
