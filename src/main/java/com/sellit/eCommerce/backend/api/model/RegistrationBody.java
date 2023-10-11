@@ -1,18 +1,16 @@
 package com.sellit.eCommerce.backend.api.model;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class RegistrationBody {
 
     @NotNull
     @NotBlank
-    @Min(3)
-    @Max(255)
+    @Size(min = 6, max = 255)
     private String username;
 
     @NotNull
@@ -22,9 +20,8 @@ public class RegistrationBody {
 
     @NotNull
     @NotBlank
-    @Min(8)
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
-    @Max(32)
+    @Size(min = 8, max = 32)
     private String password;
 
     @NotNull
